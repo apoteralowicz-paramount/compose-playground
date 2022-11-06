@@ -33,10 +33,9 @@ fun RandomShape(
     val shape = rememberSaveable(saver = shapeSaver()) { shapes.random() }
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(size)
             .background(color = color, shape = shape)
-            .then(modifier)
     )
 }
 
