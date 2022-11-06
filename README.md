@@ -12,7 +12,8 @@ This is a sample project created to demonstrate various features of Compose.
 [Compose Roadmap](https://developer.android.com/jetpack/androidx/compose-roadmap)
 
 ## :wrench: Tools
-[Accompanist](
+[Accompanist](https://github.com/google/accompanist)
+
 The biggest and probably most widely used library for Compose, enriching the app with necessary functionalities, like navigation, paging, easy permission handling
 
 [Mosaic](https://github.com/JakeWharton/mosaic)
