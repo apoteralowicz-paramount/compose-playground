@@ -1,16 +1,20 @@
 package com.example.layouts
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
@@ -40,6 +44,18 @@ fun RandomShape(
             .background(color = color, shape = shape)
     )
 }
+
+@Composable
+fun ShapeCard(modifier: Modifier = Modifier, index: Int) =
+    Row(
+        modifier = modifier
+            .background(Color.White, RoundedCornerShape(percent = 10)),
+        horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        RandomShape()
+        Text("Item no $index")
+    }
 
 fun randomLightColor(): Color {
     val r = Random.nextInt(128) + 127
