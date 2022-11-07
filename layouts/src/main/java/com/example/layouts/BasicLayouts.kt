@@ -1,5 +1,6 @@
 package com.example.layouts
 
+import android.widget.GridLayout
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable

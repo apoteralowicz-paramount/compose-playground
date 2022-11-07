@@ -3,6 +3,7 @@ package com.example.layouts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CutCornerShape
@@ -15,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import kotlin.math.min
 import kotlin.random.Random
 
 private val shapes = listOf<Shape>(
@@ -26,7 +28,7 @@ private val shapes = listOf<Shape>(
 @Composable
 fun RandomShape(
     modifier: Modifier = Modifier,
-    size: Dp = 20.dp
+    minSize: Dp = 20.dp
 ) {
 
     val color = rememberSaveable(saver = colorSaver()) { randomLightColor() }
@@ -34,7 +36,7 @@ fun RandomShape(
 
     Box(
         modifier = modifier
-            .size(size)
+            .defaultMinSize(minSize, minSize)
             .background(color = color, shape = shape)
     )
 }
