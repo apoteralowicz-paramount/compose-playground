@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Compose Playground"
 include ':layouts'
+include ':viewmodel'
+include ':migration'
