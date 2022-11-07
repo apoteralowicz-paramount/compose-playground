@@ -15,8 +15,9 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
-fun Tags() =
+fun Tags(modifier: Modifier = Modifier) =
     FlowRow(
+        modifier = modifier,
         mainAxisSpacing = 4.dp,
         crossAxisSpacing = 2.dp
     ) {
