@@ -1,6 +1,7 @@
 package com.example.performance.testapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
@@ -17,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.metrics.performance.JankStats
 import androidx.metrics.performance.PerformanceMetricsState
 import com.example.performance.step4.TodoItem
 import com.example.performance.step4.TodoListWithKeys
@@ -28,6 +30,13 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @AndroidEntryPoint
 class TodoComposeActivity : AppCompatActivity() {
+
+    private lateinit var jankStats: JankStats
+
+    private val jankFrameListener = JankStats.OnFrameListener { frameData ->
+        // A real app could do something more interesting, like writing the info to local storage and later on report it.
+        Log.v("JankStatsSample", frameData.toString())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +50,10 @@ class TodoComposeActivity : AppCompatActivity() {
                 }
             }
         }
+
+        // initialize JankStats for current window
+        jankStats = JankStats.createAndTrack(window, jankFrameListener)
+
     }
 
     @Composable
@@ -63,9 +76,21 @@ class TodoComposeActivity : AppCompatActivity() {
         TodoListWithKeys(list = list, state = listState, onEvent = onEvent)
     }
 
+    override fun onResume() {
+        super.onResume()
+        jankStats.isTrackingEnabled = true
+    }
+
+    override fun onPause() {
+        super.onPause()
+        jankStats.isTrackingEnabled = false
+    }
+
     @Composable
     fun rememberMetricsStateHolder(): PerformanceMetricsState.Holder {
         val view = LocalView.current
         return remember(view) { PerformanceMetricsState.getHolderForHierarchy(view) }
     }
+
+
 }
