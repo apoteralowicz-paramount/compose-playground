@@ -33,8 +33,8 @@ fun UnstableLambda() {
     {
         items(items = list, key = { it.id }) { item ->
             TodoItem(state = item, onEvent = { event ->
-                // This lambda is unstable.
-                // It will not be shown in compose performance reports as unstable
+                // This lambda is unstable
+                // However, it will not be marked in compose performance reports as such
 
                 when (event) {
                     is TodoEvent.Toggle -> {
