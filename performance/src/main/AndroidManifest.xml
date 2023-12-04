@@ -6,12 +6,28 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:allowBackup="true"
         android:name=".testapp.TodoApp"
+        android:allowBackup="true"
         android:label="Sample App"
-        android:theme="@style/Theme.AppCompat"
         android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat"
         tools:targetApi="31">
+        <profileable
+            android:shell="true"
+            tools:targetApi="34" />
+        <activity
+            android:name=".testapp.TodoComposeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
     </application>
 
 </manifest>
