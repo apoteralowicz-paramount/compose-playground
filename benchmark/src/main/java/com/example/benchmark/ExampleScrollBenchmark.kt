@@ -1,8 +1,8 @@
 package com.example.benchmark
 
 import android.graphics.Point
+import androidx.benchmark.macro.FrameTimingMetric
 import androidx.benchmark.macro.StartupMode
-import androidx.benchmark.macro.StartupTimingMetric
 import androidx.benchmark.macro.junit4.MacrobenchmarkRule
 import androidx.test.uiautomator.By
 import org.junit.Rule
@@ -15,7 +15,7 @@ class ExampleScrollBenchmark {
     @Test
     fun scroll() = benchmarkRule.measureRepeated(
         packageName = "com.example.performance",
-        metrics = listOf(StartupTimingMetric()),
+        metrics = listOf(FrameTimingMetric()),
         iterations = 5,
         startupMode = StartupMode.COLD
     ) {
@@ -23,9 +23,9 @@ class ExampleScrollBenchmark {
 
         val list = device.findObject(By.scrollable(true))
 
-        repeat(3) {
+        repeat(5) {
             list.drag(
-                Point(0, list.visibleCenter.y / 3)
+                Point(0, list.visibleCenter.y / 4)
             )
         }
     }
